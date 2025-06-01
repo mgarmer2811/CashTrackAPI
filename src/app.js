@@ -1,8 +1,10 @@
+const cors = require("cors");
 const express = require("express");
 const expenseRoutes = require("./routes/expense.routes");
 
 const app = express();
 
+app.use(cors({ origin: "*" }));
 app.use(express.json());
 app.use("/api/expenses", expenseRoutes);
 
