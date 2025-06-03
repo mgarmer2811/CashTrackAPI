@@ -201,6 +201,7 @@ exports.deleteExpense = async (req, res, next) => {
                 .status(404)
                 .json({ message: "404. Not found. Expense not found" });
         }
+        return res.status(200).json({ message: "200. Deletion sucessful" });
     } catch (err) {
         next(err);
     }
