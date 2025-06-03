@@ -64,11 +64,23 @@ exports.createExpense = async (req, res, next) => {
 
 exports.getAllExpenses = async (req, res, next) => {
     try {
-        const { category, year, month, week } = req.query;
+        const { userId, category, year, month, week } = req.query;
         console.log("year: ", year);
         console.log("month: ", month);
         console.log("week: ", week);
-        let whereClause = {};
+        console.log("category: ", category);
+        console.log("userId: ", userId);
+
+        if (!userId) {
+            return res.status(400).json({
+                message:
+                    "400. Bad Request. Semething is missing or faulty. 'userId' is required",
+            });
+        }
+
+        let whereClause = {
+            userId,
+        };
 
         if (category !== undefined) {
             const categoryInt = parseInt(category, 10);
